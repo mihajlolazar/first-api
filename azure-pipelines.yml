@@ -18,5 +18,13 @@ steps:
 - script: |
     npm install
     npm test
-    npm run build
-  displayName: 'npm install, test and build'
+  displayName: 'npm install and test'
+
+  # Publish build artifacts
+# Publish build artifacts to Azure Pipelines or a Windows file share
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'drop' 
+    #publishLocation: 'Container' # Options: container, filePath
+    #targetPath: # Required when publishLocation == FilePath
