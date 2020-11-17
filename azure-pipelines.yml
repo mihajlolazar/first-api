@@ -20,7 +20,12 @@ steps:
     npm test
   displayName: 'npm install and test'
 
-  # Publish build artifacts
+- task: CopyFiles@2
+  inputs:
+    contents: '.'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
+# Publish build artifacts
 # Publish build artifacts to Azure Pipelines or a Windows file share
 - task: PublishBuildArtifacts@1
   inputs:
