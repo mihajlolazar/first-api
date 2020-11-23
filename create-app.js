@@ -19,7 +19,7 @@ console.log(process.env.DB_NAME);
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send('Hello world ' + process.env.DB_USER);
+    res.send('Hello world ' + (process.env.DB_USER || ''));
 });
 
 module.exports = app;

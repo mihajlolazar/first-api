@@ -7,7 +7,7 @@ describe('GET /', function () {
             .get('/')
             .expect(200)
             .end(function (err, res) {
-                expect(res.text).toEqual("Hello world root");
+                expect(res.text).toEqual("Hello world ");
                 if (err) throw err;
                 done();
             });
