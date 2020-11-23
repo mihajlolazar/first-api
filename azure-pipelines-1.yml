@@ -21,13 +21,13 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   # MongoDB user
-  DB_USER: $(DB_USER)
+  dbUser: $(DB_USER)
 
   # MongoDB password
-  DB_PASSWORD: $(DB_PASSWORD)
+  dbPassword: $(DB_PASSWORD)
 
   # MongoDB name
-  DB_NAME: $(DB_NAME)
+  dbName: $(DB_NAME)
 
 stages:
 - stage: Build
