@@ -20,15 +20,6 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-  # MongoDB user
-  dbUser: $(DB_USER)
-
-  # MongoDB password
-  dbPassword: $(DB_PASSWORD)
-
-  # MongoDB name
-  dbName: $(DB_NAME)
-
 stages:
 - stage: Build
   displayName: Build stage
