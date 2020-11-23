@@ -10,11 +10,11 @@ console.log(process.env.DB_PASSWORD);
 console.log(process.env.DB_NAME);
 
 // Set up Mongoose and connect to DB
-// mongoose.set('useFindAndModify', false);
-// const db = mongoose.connect(`mongodb+srv://${dbUser}:${dbPassword}@cluster0.010pa.mongodb.net/${dbName}?retryWrites=true&w=majority`).catch(e => {
-//     console.log(e);
-// });
-// mongoose.Promise = global.Promise;
+mongoose.set('useFindAndModify', false);
+const db = mongoose.connect(`mongodb+srv://${dbUser}:${dbPassword}@cluster0.010pa.mongodb.net/${dbName}?retryWrites=true&w=majority`).catch(e => {
+    console.log(e);
+});
+mongoose.Promise = global.Promise;
 
 const app = express();
 
