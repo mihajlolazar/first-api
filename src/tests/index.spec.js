@@ -23,7 +23,7 @@ afterAll(async function (done) {
 })
 
 describe('GET /', function () {
-    it('creates a new product', async function (done) {
+    it('creates a new product', async function () {
         const res = await request(app)
             .get('/')
             .expect(200);
@@ -34,4 +34,33 @@ describe('GET /', function () {
 });
 
  
+describe('Products Endpoint', function () {
+    let product;
 
+    it('create a product',function (done) {
+      request(app)
+        .post('/products')
+        .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .expect('Content-Type', /json/)
+        .send({title: 'test', price: '100'})
+        .expect(200)
+        .then(function (res) {
+            product = res.body;
+            
+            expect(product).toHaveProperty("title", "test")
+            expect(product).toHaveProperty("price", 100)
+            done();
+        });
+    });
+
+    it('return the product', function (done) {
+        request(app)
+            .get('/products/' + product._id)
+            .expect(200)
+            .then(function (res) {
+                expect(res.body).toEqual(product);
+                done();
+            });
+    });
+});
