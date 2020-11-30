@@ -17,6 +17,7 @@ beforeAll(function (done) {
     // done();
 
   mockMongoose.prepareStorage().then(function() {
+    console.log('++++++++++++++++++ mongoose.connect +++++++++++++++')
     mongoose.connect('mongodb://example.com/TestingDB', async function(err) {
       console.log('-----------connected----------')
 
