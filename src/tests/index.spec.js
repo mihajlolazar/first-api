@@ -9,10 +9,12 @@ let app;
 
 // jest.useFakeTimers();
 
-beforeAll(async function () {
+beforeAll(async function (done) {
     await mockMongoose.prepareStorage();
     await mongoose.connect('mongodb://example.com/TestingDB');
     app = await createApp();
+
+    done();
 });
 
 afterAll(async function (done) {
