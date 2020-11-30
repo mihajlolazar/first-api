@@ -7,27 +7,31 @@ const mockMongoose = new MockMongoose(mongoose);
 
 let app;
 
-beforeAll(async function () {
+// jest.useFakeTimers();
+
+beforeAll(async function (done) {
     await mockMongoose.prepareStorage();
     await mongoose.connect('mongodb://example.com/TestingDB');
     app = await createApp();
 
-    console.log(app);
+    done();
 });
 
-afterAll(async function () {
+afterAll(async function (done) {
     await mongoose.connection.close()
+
+    done();
 })
 
 describe('GET /', function () {
-    it('returns a "Hello world" string', async function () {
+    it('returns a "Hello world" string', async function (done) {
         const res = await request(app)
             .get('/')
             .expect(200);
 
-        console.log('hello world')
-
         expect(res.text).toEqual("Hello world");
+
+        done();
     });
 });
 
