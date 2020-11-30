@@ -24,10 +24,10 @@ async function createApp() {
     // init express server
     const app = express();
 
-    app.use(bodyParser.json());
+    //app.use(bodyParser.json());
 
     // connect to db
-    await database()
+    //await database()
 
     app.get('/', (req, res) => {
         res.send('Hello world');
@@ -95,6 +95,8 @@ async function createApp() {
             }
         })
     });
+
+    console.log(app)
 
     return app
 }
