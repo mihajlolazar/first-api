@@ -5,6 +5,8 @@ const createApp = require('../create-app');
 
 const mockMongoose = new MockMongoose(mongoose);
 
+jest.setTimeout(30000);
+
 
 let app;
 
