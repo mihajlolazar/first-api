@@ -11,6 +11,8 @@ beforeAll(async function () {
     await mockMongoose.prepareStorage();
     await mongoose.connect('mongodb://example.com/TestingDB');
     app = await createApp();
+
+    console.log(app);
 });
 
 afterAll(async function () {
