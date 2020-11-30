@@ -10,6 +10,7 @@ let app;
 //jest.setTimeout(60000);
 
 beforeAll(async function (done) {
+    console.log('before all')
     await mockMongoose.prepareStorage();
     await mongoose.connect('mongodb://example.com/TestingDB');
     app = await createApp();
@@ -18,19 +19,22 @@ beforeAll(async function (done) {
 });
 
 afterAll(async function (done) {
+    console.log('after all')
     await mongoose.connection.close()
 
     done();
 })
 
 describe('GET /', function () {
+    console.log('first describe')
+
     it('returns a "Hello world" string', async function (done) {
         // const res = await request(app)
         //     .get('/')
         //     .expect(200);
         //
         // expect(res.text).toEqual("Hello world");
-        console.log('app length: ' + Object.keys(app).length);
+        console.log('app length: ' + app ? Object.keys(app).length : 0);
         expect(1).toBe(1);
 
         done();
