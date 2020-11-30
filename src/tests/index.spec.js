@@ -33,13 +33,11 @@ describe('GET /', function () {
     console.log('first describe')
 
     it('returns a "Hello world" string', async function (done) {
-        // const res = await request(app)
-        //     .get('/')
-        //     .expect(200);
-        //
-        // expect(res.text).toEqual("Hello world");
-        console.log('app length: ' + app ? Object.keys(app).length : 0);
-        expect(1).toBe(1);
+        const res = await request(app)
+            .get('/')
+            .expect(200);
+
+        expect(res.text).toEqual("Hello world");
 
         done();
     });
