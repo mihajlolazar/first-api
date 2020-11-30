@@ -11,10 +11,10 @@ let app;
 
 beforeAll(async function (done) {
     console.log('before all')
-    console.log('await mockMongoose.prepareStorage')
-    await mockMongoose.prepareStorage();
-    console.log('await mongoose.connect')
-    await mongoose.connect('mongodb://example.com/TestingDB');
+    // console.log('await mockMongoose.prepareStorage')
+    // await mockMongoose.prepareStorage();
+    // console.log('await mongoose.connect')
+    // await mongoose.connect('mongodb://example.com/TestingDB');
     console.log('await createApp')
     app = await createApp();
     console.log(app ? Object.keys(app).length : 'beforeall  app is undefined')
