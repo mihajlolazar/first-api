@@ -1,11 +1,9 @@
 const request = require('supertest');
-var mongoose = require('mongoose');
-var MockMongoose = require('mock-mongoose').MockMongoose;
+const mongoose = require('mongoose');
+const MockMongoose = require('mock-mongoose').MockMongoose;
 const createApp = require('../create-app');
 
 const mockMongoose = new MockMongoose(mongoose);
-
-// jest.setTimeout(5000);
 
 
 let app;
@@ -17,23 +15,23 @@ beforeAll(async function (done) {
     done()
 });
 
-afterAll(async function (done) { 
+afterAll(async function (done) {
     await mongoose.connection.close()
     done()
 })
 
 describe('GET /', function () {
-    it('creates a new product', async function () {
+    it('returns a "Hello world" string', async function () {
         const res = await request(app)
             .get('/')
             .expect(200);
-        
+
         expect(res.text).toEqual("Hello world");
 
     });
 });
 
- 
+
 describe('Products Endpoint', function () {
     let product;
 
@@ -47,10 +45,23 @@ describe('Products Endpoint', function () {
         .expect(200)
         .then(function (res) {
             product = res.body;
-            
+
             expect(product).toHaveProperty("title", "test")
             expect(product).toHaveProperty("price", 100)
             done();
+        });
+    });
+
+    it('returns product list', function (done) {
+      request(app)
+        .get('/products/list')
+        .expect(200)
+        .then(function (res) {
+          const products = res.body;
+
+          expect(products.length).toBe(1)
+          expect(products[0]).toEqual(product)
+          done();
         });
     });
 
@@ -62,5 +73,33 @@ describe('Products Endpoint', function () {
                 expect(res.body).toEqual(product);
                 done();
             });
+    });
+
+    it('update the product', function (done) {
+      request(app)
+        .put('/products/' + product._id)
+        .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .expect('Content-Type', /json/)
+        .send({title: 'updated title', price: '200'})
+        .expect(200)
+        .then(function (res) {
+          product = res.body;
+
+          expect(product).toHaveProperty("title", "updated title")
+          expect(product).toHaveProperty("price", 200)
+          done();
+        });
+    });
+
+    it('delete the product', function (done) {
+      request(app)
+        .delete('/products/' + product._id)
+        .expect(200)
+        .then(function (res) {
+          expect(res.body).toBe('');
+
+          done();
+        });
     });
 });
