@@ -7,7 +7,7 @@ const mockMongoose = new MockMongoose(mongoose);
 
 let app;
 
-jest.setTimeout(60000);
+//jest.setTimeout(60000);
 
 beforeAll(async function (done) {
     await mockMongoose.prepareStorage();
@@ -30,7 +30,7 @@ describe('GET /', function () {
         //     .expect(200);
         //
         // expect(res.text).toEqual("Hello world");
-        console.log(app);
+        console.log('app length: ' + Object.keys(app).length);
         expect(1).toBe(1);
 
         done();

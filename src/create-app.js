@@ -96,6 +96,8 @@ async function createApp() {
         })
     });
 
+    console.log('return app length: ', Object.keys(app).length);
+
     return app
 }
 
