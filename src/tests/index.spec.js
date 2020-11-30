@@ -18,6 +18,8 @@ beforeAll(function (done) {
 
   mockMongoose.prepareStorage().then(function() {
     mongoose.connect('mongodb://example.com/TestingDB', async function(err) {
+      console.log('-----------connected----------')
+
       app = await createApp();
 
       done(err);
