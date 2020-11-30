@@ -1,5 +1,6 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
+const express = require('express');
 const MockMongoose = require('mock-mongoose').MockMongoose;
 const createApp = require('../create-app');
 
