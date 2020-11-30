@@ -5,9 +5,6 @@ const createApp = require('../create-app');
 
 const mockMongoose = new MockMongoose(mongoose);
 
-jest.setTimeout(30000);
-
-
 let app;
 
 beforeAll(async function (done) {
@@ -23,13 +20,13 @@ afterAll(async function (done) {
 })
 
 describe('GET /', function () {
-    it('returns a "Hello world" string', async function () {
+    it('returns a "Hello world" string', async function (done) {
         const res = await request(app)
             .get('/')
             .expect(200);
 
         expect(res.text).toEqual("Hello world");
-
+        done();
     });
 });
 
