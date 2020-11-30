@@ -9,12 +9,24 @@ let app;
 
 //jest.setTimeout(60000);
 
-beforeAll(async function (done) {
-    await mockMongoose.prepareStorage();
-    await mongoose.connect('mongodb://example.com/TestingDB');
-    app = await createApp();
+beforeAll(function (done) {
+    // await mockMongoose.prepareStorage();
+    // await mongoose.connect('mongodb://example.com/TestingDB');
+    // app = await createApp();
+    //
+    // done();
 
-    done();
+  mockMongoose.prepareStorage().then(function() {
+    mongoose.connect('mongodb://example.com/TestingDB', async function(err) {
+      app = await createApp();
+
+      done(err);
+    });
+  });
+  // await mongoose.connect('mongodb://example.com/TestingDB');
+  // app = await createApp();
+  //
+  // done();
 });
 
 afterAll(async function (done) {
