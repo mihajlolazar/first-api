@@ -5,23 +5,23 @@ const createApp = require('../create-app');
 
 const mockMongoose = new MockMongoose(mongoose);
 
-let app;
+const app = express();
 
 // jest.useFakeTimers();
 
-beforeAll(async function (done) {
-    await mockMongoose.prepareStorage();
-    await mongoose.connect('mongodb://example.com/TestingDB');
-    app = await createApp();
+// beforeAll(async function (done) {
+//     await mockMongoose.prepareStorage();
+//     await mongoose.connect('mongodb://example.com/TestingDB');
+//     //app = await createApp();
+//
+//     done();
+// });
 
-    done();
-});
-
-afterAll(async function (done) {
-    await mongoose.connection.close()
-
-    done();
-})
+// afterAll(async function (done) {
+//     await mongoose.connection.close()
+//
+//     done();
+// })
 
 describe('GET /', function () {
     it('returns a "Hello world" string', async function (done) {
