@@ -7,7 +7,7 @@ const mockMongoose = new MockMongoose(mongoose);
 
 let app;
 
-// jest.useFakeTimers();
+jest.setTimeout(60000);
 
 beforeAll(async function (done) {
     await mockMongoose.prepareStorage();
