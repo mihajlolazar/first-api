@@ -7,26 +7,23 @@ const mockMongoose = new MockMongoose(mongoose);
 
 let app;
 
-beforeAll(async function (done) {
+beforeAll(async function () {
     await mockMongoose.prepareStorage();
     await mongoose.connect('mongodb://example.com/TestingDB');
     app = await createApp();
-    done()
 });
 
-afterAll(async function (done) {
+afterAll(async function () {
     await mongoose.connection.close()
-    done()
 })
 
 describe('GET /', function () {
-    it('returns a "Hello world" string', async function (done) {
+    it('returns a "Hello world" string', async function () {
         const res = await request(app)
             .get('/')
             .expect(200);
 
         expect(res.text).toEqual("Hello world");
-        done();
     });
 });
 
