@@ -37,6 +37,7 @@ stages:
 
     - script: |
         sudo apt-get install libcurl3
+        set DEBUG=*
         npm install
         npm run build --if-present
         npm run test --if-present
