@@ -7,8 +7,6 @@ const mockMongoose = new MockMongoose(mongoose);
 
 let app;
 
-//jest.setTimeout(60000);
-
 beforeAll(function (done) {
     // await mockMongoose.prepareStorage();
     // await mongoose.connect('mongodb://example.com/TestingDB');
@@ -17,19 +15,12 @@ beforeAll(function (done) {
     // done();
 
   mockMongoose.prepareStorage().then(function() {
-    //console.log('++++++++++++++++++ mongoose.connect +++++++++++++++')
     mongoose.connect('mongodb://example.com/TestingDB', async function(err) {
-      //console.log('-----------connected----------')
-
       app = await createApp();
 
       done(err);
     });
   });
-  // await mongoose.connect('mongodb://example.com/TestingDB');
-  // app = await createApp();
-  //
-  // done();
 });
 
 afterAll(async function (done) {
