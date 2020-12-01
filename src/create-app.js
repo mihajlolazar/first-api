@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Product = require('./models/Product');
+const { graphqlHTTP } = require('express-graphql');
+const MyGraphQLSchema = require('./models/GraphQL');
 
 const dbUser = process.env.DB_USER || '';
 const dbPassword = process.env.DB_PASSWORD || '';
@@ -25,6 +27,14 @@ async function createApp() {
     const app = express();
 
     app.use(bodyParser.json());
+
+    app.use(
+      '/graphql',
+      graphqlHTTP({
+          schema: MyGraphQLSchema,
+          graphiql: true,
+      }),
+    );
 
     // connect to db
     await database()
