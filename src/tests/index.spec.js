@@ -9,6 +9,20 @@ let app;
 
 //jest.setTimeout(60000);
 
+console.info("PRETEST: Preparing storage for mockgoose");
+
+const pretest = async () => {
+  try {
+    await mockMongoose.prepareStorage();
+    console.info("PRETEST: Finished, exiting process");
+  } catch (err) {
+    console.log(err);
+  }
+  process.exit(0);
+};
+
+pretest();
+
 beforeAll(function (done) {
     // await mockMongoose.prepareStorage();
     // await mongoose.connect('mongodb://example.com/TestingDB');
@@ -17,9 +31,9 @@ beforeAll(function (done) {
     // done();
 
   mockMongoose.prepareStorage().then(function() {
-    console.log('++++++++++++++++++ mongoose.connect +++++++++++++++')
+    //console.log('++++++++++++++++++ mongoose.connect +++++++++++++++')
     mongoose.connect('mongodb://example.com/TestingDB', async function(err) {
-      console.log('-----------connected----------')
+      //console.log('-----------connected----------')
 
       app = await createApp();
 
