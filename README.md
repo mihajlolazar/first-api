@@ -5,7 +5,3 @@ Azure
 GitHub
 - git remote add github git@github.com:mihajlolazar/first-api.git
 - git push --set-upstream github master
-
-GitLab
-- git remote add gitlab git@github.com:mihajlolazar/first-api-gitlab.git
-- git push --set-upstream gitlab master
